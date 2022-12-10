@@ -9,7 +9,7 @@ const knownAccountSeed = "clarify coconut bone inner tilt shrug feed rate multip
 
 //createNamedAccount("sidhasdsdsdsdsds.sidharths.testnet"); /// provide a new sub account each time
 //createAccountFromContract("fifcovdjfiuyryscsatupmnflaubwveosqft"); /// provide a 32char string to generate explicit account.
-//sendTokenToId("sample12345.testnet")
+sendTokenToId("sample12345.testnet")
 //generateImplicitAccount();   /// generates a random seed phrase and keypair and logs it. 
 
 
