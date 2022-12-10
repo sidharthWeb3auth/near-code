@@ -12,6 +12,9 @@ const accountID_2 = "668c2fcb108ebb1b22e5950977395f743a484348450f866d46632a120a0
 
 // Please check block explorer to see which of the above account ID's have USDC at the moment and invoke the appropriate function for transferring.
 
+
+
+
 // sendTokenUSDCToId(accountID_2, seed1, accountID_1, "1000000" ) /// sending 1 USDC from sidharthsuresh.near to 668c2fcb108ebb1b22e5950977395f743a484348450f866d46632a120a0b03f8
 
 sendTokenUSDCToId(accountID_1, seed2, accountID_2, "1000000" ) /// sending 1 USDC from "668c2fcb108ebb1b22e5950977395f743a484348450f866d46632a120a0b03f8" to sidharthsuresh.near
