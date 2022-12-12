@@ -4,15 +4,15 @@ const nearAPI = require('near-api-js');
 const { utils } = require("near-api-js");
 const knownAccountSeed = "clarify coconut bone inner tilt shrug feed rate multiply exclude knock refuse"; //seed for sidharths.testnet
 
+
 // below are the available methods, please uncomment them and run
 // check sidharths.testnet on explorer to see the onchain events.
 
 //createNamedAccount("sidhasdsdsdsdsds.sidharths.testnet"); /// provide a new sub account each time
 //createAccountFromContract("fifcovdjfiuyryscsatupmnflaubwveosqft"); /// provide a 32char string to generate explicit account.
-sendTokenToId("sample12345.testnet")
+//sendTokenToId("sample12345.testnet")
 //generateImplicitAccount();   /// generates a random seed phrase and keypair and logs it. 
-
-
+createNewKeyForAContractWithAllowance() /// This method created a new access (function key) for testnet ref.finance with a preset near allowance.
 
 
 /// generates and logs phrase and keys for an implicit account
@@ -132,4 +132,38 @@ async function createAccountFromContract(newAccountName) {
     attachedDeposit: utils.format.parseNearAmount("2"),
   });
   console.log("done");
+}
+
+///  Creates an new key for https://testnet.ref.finance/ with a preset near allowance
+async function createNewKeyForAContractWithAllowance() {
+  let parsedKey = parseSeedPhrase(knownAccountSeed);
+
+  const { keyStores, KeyPair, connect } = nearAPI;
+  const myKeyStore = new keyStores.InMemoryKeyStore();
+  const PRIVATE_KEY = parsedKey.secretKey;
+  const keyPair = KeyPair.fromString(PRIVATE_KEY);
+
+
+  await myKeyStore.setKey("testnet", "sidharths.testnet", keyPair);
+  const connectionConfig = {
+      networkId: "testnet",
+      keyStore: myKeyStore,
+      nodeUrl: "https://rpc.testnet.near.org",
+      walletUrl: "https://wallet.testnet.near.org",
+      helperUrl: "https://helper.testnet.near.org",
+      explorerUrl: "https://explorer.testnet.near.org",
+    };
+    const nearConnection = await connect(connectionConfig);
+
+    const account = await nearConnection.account("sidharths.testnet");
+    let newKey = KeyPair.fromRandom('ed25519').getPublicKey();
+    console.log("new key :", newKey.toString());
+  
+  return await account.addKey(
+    newKey, // public key for new account
+    "boostfarm.ref-finance.testnet", // contract this key is allowed to call( here its ref.finance testnet contract)
+    // "example_method", // methods this key is allowed to call (optional), default allows all methods
+    "2500000000000" // allowance key can use to call methods (optional)
+  );
+
 }
