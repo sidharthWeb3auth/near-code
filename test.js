@@ -8,11 +8,12 @@ const knownAccountSeed = "clarify coconut bone inner tilt shrug feed rate multip
 // below are the available methods, please uncomment them and run
 // check sidharths.testnet on explorer to see the onchain events.
 
-//createNamedAccount("sidhasdsdsdsdsds.sidharths.testnet"); /// provide a new sub account each time
-//createAccountFromContract("fifcovdjfiuyryscsatupmnflaubwveosqft"); /// provide a 32char string to generate explicit account.
+//createNamedAccount("sidh77362859.sidharths.testnet"); /// provide a new sub account each time
+//createAccountFromContract("fifdscovdjfiuyryscsatupmnflaubwveosqftdfd"); /// provide a 32char string to generate explicit account.
 //sendTokenToId("sample12345.testnet")
 //generateImplicitAccount();   /// generates a random seed phrase and keypair and logs it. 
-createNewKeyForAContractWithAllowance() /// This method created a new access (function key) for testnet ref.finance with a preset near allowance.
+//createNewKeyForAContractWithAllowance() /// This method created a new access (function key) for testnet ref.finance with a preset near allowance.
+
 
 
 /// generates and logs phrase and keys for an implicit account

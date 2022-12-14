@@ -17,8 +17,8 @@ const accountID_2 = "668c2fcb108ebb1b22e5950977395f743a484348450f866d46632a120a0
 
 // sendTokenUSDCToId(accountID_2, seed1, accountID_1, "1000000" ) /// sending 1 USDC from sidharthsuresh.near to 668c2fcb108ebb1b22e5950977395f743a484348450f866d46632a120a0b03f8
 
-sendTokenUSDCToId(accountID_1, seed2, accountID_2, "1000000" ) /// sending 1 USDC from "668c2fcb108ebb1b22e5950977395f743a484348450f866d46632a120a0b03f8" to sidharthsuresh.near
-
+//sendTokenUSDCToId(accountID_1, seed2, accountID_2, "10" ) /// sending 1 USDC from "668c2fcb108ebb1b22e5950977395f743a484348450f866d46632a120a0b03f8" to sidharthsuresh.near
+namedAccountWithSamePhrase() // create a explicit account with the same seed phrase as an implicit key
 
 
 /// Send USDC token to the receiverId(accountID)
@@ -56,5 +56,44 @@ async function sendTokenUSDCToId(receiverId, senderSeedPhrase,senderAccountID, a
       gas: "300000000000000", //setting gas allowance for running contract
       attachedDeposit: "1",
     });
+
+}
+
+/// create named account with the same passphrase
+async function namedAccountWithSamePhrase() {
+
+  let parsedKey = parseSeedPhrase("purchase pioneer voyage reveal again open obtain cliff retire seek mouse smart"); //known seedphrase of an implicit account with id  "04eb5e333a8b0d1cd0acb1dc3d23dec81ef997d589a038e65fb3fec2d2d549ca"
+
+  const { keyStores, KeyPair, connect } = nearAPI;
+  const myKeyStore = new keyStores.InMemoryKeyStore();
+  const PRIVATE_KEY = parsedKey.secretKey;
+  // creates a public / private key pair using the provided private key
+  const keyPair = KeyPair.fromString(PRIVATE_KEY);
+
+  // adds the keyPair you created to keyStore
+  await myKeyStore.setKey("mainnet", "04eb5e333a8b0d1cd0acb1dc3d23dec81ef997d589a038e65fb3fec2d2d549ca", keyPair);
+  const connectionConfig = {
+      networkId: "mainnet",
+      keyStore: myKeyStore, // first create a key store 
+      nodeUrl: "https://rpc.mainnet.near.org",
+      walletUrl: "https://wallet.mainnet.near.org",
+      helperUrl: "https://helper.mainnet.near.org",
+      explorerUrl: "https://explorer.mainnet.near.org",
+    };
+    const nearConnection = await connect(connectionConfig);
+
+    const account = await nearConnection.account("04eb5e333a8b0d1cd0acb1dc3d23dec81ef997d589a038e65fb3fec2d2d549ca");
+    console.log(parsedKey.publicKey);
+
+  await account.functionCall({
+    contractId: "near", // near contract to create a mainnet AccountId
+    methodName: "create_account",
+    args: {
+      "new_account_id": "sidharthsuresh123.near",
+      "new_public_key": parsedKey.publicKey,
+    },
+    gas: "300000000000000", //setting gas allowance for running contract
+    attachedDeposit: "1829999999999999999990",
+  });
 
 }
