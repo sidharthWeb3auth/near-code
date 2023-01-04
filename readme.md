@@ -20,3 +20,4 @@ sendTokenToId() : This function demonstrates how to initiate token transfer of n
 This file contains two functions and the execution takes place on near mainnet and involves real tokens.
 sendTokenUSDCToId() : Reference implementation on how to send USDC token from one account to another invoking a smart contract on mainnet.
 namedAccountWithSamePhrase() : Implementation on how to create a named account on mainnet.
+getAccessKeyList() : this function logs all the access keys of an account as a reference.

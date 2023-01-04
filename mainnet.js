@@ -17,7 +17,7 @@ const accountID_2 = "668c2fcb108ebb1b22e5950977395f743a484348450f866d46632a120a0
 //sendTokenUSDCToId(accountID_2, seed1, accountID_1, "1000000" ) /// sending 1 USDC from sidharthsuresh.near to 668c2fcb108ebb1b22e5950977395f743a484348450f866d46632a120a0b03f8
 //sendTokenUSDCToId(accountID_1, seed2, accountID_2, "1000000" ) /// sending 1 USDC from "668c2fcb108ebb1b22e5950977395f743a484348450f866d46632a120a0b03f8" to sidharthsuresh.near
 //namedAccountWithSamePhrase() // create a explicit account with the same seed phrase as an implicit key
-
+//getAccessKeyList() // gives the list of access keys with permission type for sidharthsuresh.near account.
 
 /// Send USDC token to the receiverId(accountID)
 async function sendTokenUSDCToId(receiverId, senderSeedPhrase,senderAccountID, amount) {
@@ -94,4 +94,29 @@ async function namedAccountWithSamePhrase() {
     attachedDeposit: "1829999999999999999990",
   });
 
+}
+
+/// Console log the list of access keys of an account.
+async function getAccessKeyList() {
+  let parsedKey = parseSeedPhrase(seed1); // known seed phrase of sidharthsuresh.near
+
+  const { keyStores, KeyPair, connect } = nearAPI;
+  const myKeyStore = new keyStores.InMemoryKeyStore();
+  const PRIVATE_KEY = parsedKey.secretKey;
+  const keyPair = KeyPair.fromString(PRIVATE_KEY);
+
+
+  await myKeyStore.setKey("mainnet", "sidharthsuresh.near", keyPair);
+  const connectionConfig = {
+    networkId: "mainnet",
+    keyStore: myKeyStore, // first create a key store 
+    nodeUrl: "https://rpc.mainnet.near.org",
+    walletUrl: "https://wallet.mainnet.near.org",
+    helperUrl: "https://helper.mainnet.near.org",
+    explorerUrl: "https://explorer.mainnet.near.org",
+  };
+  const nearConnection = await connect(connectionConfig);
+  const account = await nearConnection.account("sidharthsuresh.near");
+  console.log(await account.getAccessKeys());
+  
 }
