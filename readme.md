@@ -17,5 +17,6 @@ sendTokenToId() : This function demonstrates how to initiate token transfer of n
 
 ## mainnet.js
 
-This file contains only one function and the execution takes place on near mainnet and involves real tokens.
-Reference implementation on how to send USDC token from one account to another invoking a smart contract on mainnet.
+This file contains two functions and the execution takes place on near mainnet and involves real tokens.
+sendTokenUSDCToId() : Reference implementation on how to send USDC token from one account to another invoking a smart contract on mainnet.
+namedAccountWithSamePhrase() : Implementation on how to create a named account on mainnet.

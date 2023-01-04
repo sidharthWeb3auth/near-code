@@ -10,15 +10,13 @@ const seed2 = "normal skate person fever upgrade rib muscle youth hip rabbit pre
 const accountID_1 = "sidharthsuresh.near";
 const accountID_2 = "668c2fcb108ebb1b22e5950977395f743a484348450f866d46632a120a0b03f8";
 
-// Please check block explorer to see which of the above account ID's have USDC at the moment and invoke the appropriate function for transferring.
+// ***** Please check block explorer to see which of the above account ID's have USDC at the moment and invoke the appropriate function for transferring.
 
 
-
-
-// sendTokenUSDCToId(accountID_2, seed1, accountID_1, "1000000" ) /// sending 1 USDC from sidharthsuresh.near to 668c2fcb108ebb1b22e5950977395f743a484348450f866d46632a120a0b03f8
-
-//sendTokenUSDCToId(accountID_1, seed2, accountID_2, "10" ) /// sending 1 USDC from "668c2fcb108ebb1b22e5950977395f743a484348450f866d46632a120a0b03f8" to sidharthsuresh.near
-namedAccountWithSamePhrase() // create a explicit account with the same seed phrase as an implicit key
+// ### UNCOMMENT BELOW LINES TO RUN THE FUNCTIONS.
+//sendTokenUSDCToId(accountID_2, seed1, accountID_1, "1000000" ) /// sending 1 USDC from sidharthsuresh.near to 668c2fcb108ebb1b22e5950977395f743a484348450f866d46632a120a0b03f8
+//sendTokenUSDCToId(accountID_1, seed2, accountID_2, "1000000" ) /// sending 1 USDC from "668c2fcb108ebb1b22e5950977395f743a484348450f866d46632a120a0b03f8" to sidharthsuresh.near
+//namedAccountWithSamePhrase() // create a explicit account with the same seed phrase as an implicit key
 
 
 /// Send USDC token to the receiverId(accountID)
@@ -89,7 +87,7 @@ async function namedAccountWithSamePhrase() {
     contractId: "near", // near contract to create a mainnet AccountId
     methodName: "create_account",
     args: {
-      "new_account_id": "sidharthsuresh123.near",
+      "new_account_id": "sidharthsuresh123.near", /// Change the name since this is already taken
       "new_public_key": parsedKey.publicKey,
     },
     gas: "300000000000000", //setting gas allowance for running contract
