@@ -12,7 +12,7 @@ createAccountFromContract(): This is a sample function on how to generate an exp
 
 sendTokenToId() : This function demonstrates how to initiate token transfer of near tokens.
 
-
+createNewKeyForAContractWithAllowance() : Adds a new function access key for ref.finance testnet
 
 
 ## mainnet.js
